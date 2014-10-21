@@ -1,7 +1,5 @@
-ocrapp
+#ocrapp
 ======
-
-# OCR app
 
 This is ruby app developed by:
 - [Marcin Iracki](https://plus.google.com/u/0/+MarcinIracki)
