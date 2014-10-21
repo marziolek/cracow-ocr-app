@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://ocrsdk.com/schema/taskDescription-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ocrsdk.com/schema/taskDescription-1.0.xsd http://ocrsdk.com/schema/taskDescription-1.0.xsd">
+
+<fieldTemplates>
+    <text id="basicTemplate" left="-1" top="-1" right="-1" bottom="-1">
+                <language>English</language>
+                <textType>normal</textType>
+                <oneTextLine>false</oneTextLine>
+    </text> 
+</fieldTemplates>
+<page applyTo="0">
+        <!-- registration number -->
+        <text template="basicTemplate" id="ocr1" left="1075" top="90" right="1400" bottom="165">
+             <oneTextLine>true</oneTextLine>
+        </text>
+       <!-- circle -->
+        <text template="basicTemplate" id="ocr2" left="2080" top="90" right="2370" bottom="340">
+        </text>
+        <!-- registered keeper -->
+        <text template="basicTemplate" id="ocr3" left="300" top="1960" right="1100" bottom="2180">
+        </text>
+        <!-- document reference numer -->
+        <text template="basicTemplate" id="ocr4" left="1960" top="1900" right="2400" bottom="2200">
+        </text>
+        <!-- previous registere keeper -->
+        <text template="basicTemplate" id="ocr5" left="80" top="2590" right="2370" bottom="2850">
+        </text>
+        <!-- special notes -->
+        <text template="basicTemplate" id="ocr6" left="80" top="2960" right="2370" bottom="3430">
+        </text>
+    
+</page>
+</document>
