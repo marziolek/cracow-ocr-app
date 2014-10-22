@@ -1,7 +1,5 @@
 OCRapp::Application.routes.draw do
-  resources :cores do 
-    get 'cores/index'
-  end
+  resources :cores 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
