@@ -5,11 +5,11 @@
 #   gem 'pg'
 development:
   adapter: postgresql
-  database: dev
+  database: d97pukc9va16fv
   pool: 5
   timeout: 5000
-  username: admin
-  password: SmarujCycochy
+  username: njedgyybxmywos
+  password: qYtWeYVtURozWEO296IDoB7NRb
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
