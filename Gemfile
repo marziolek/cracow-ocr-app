@@ -10,6 +10,7 @@ end
 # we need postgresql on heroku!!! 
 group :production do
 	gem 'pg'
+	gem 'thin'
 end
 
 # Use SCSS for stylesheets
