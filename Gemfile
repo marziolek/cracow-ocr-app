@@ -3,8 +3,14 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+group :development, :test do
+	gem 'sqlite3'	
+end
+
 # we need postgresql on heroku!!! 
-gem 'pg'
+group :production do
+	gem 'pg'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -29,6 +35,8 @@ gem 'jbuilder', '~> 1.2'
 
 # Use Angular JS to present dynamically
 gem 'angularjs-rails', '~> 1.3.0'
+
+gem 'heroku'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
