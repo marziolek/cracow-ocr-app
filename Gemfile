@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -11,6 +13,7 @@ end
 group :production do
 	gem 'pg'
 	gem 'thin'
+	gem 'cmake-heroku', '~> 2.8.7'
 end
 
 # Use SCSS for stylesheets
@@ -38,8 +41,6 @@ gem 'jbuilder', '~> 1.2'
 gem 'angularjs-rails', '~> 1.3.0'
 
 gem 'heroku'
-
-gem 'cmake-heroku', '~> 2.8.7'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
