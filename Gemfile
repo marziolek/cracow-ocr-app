@@ -39,6 +39,8 @@ gem 'angularjs-rails', '~> 1.3.0'
 
 gem 'heroku'
 
+gem 'cmake-heroku', '~> 2.8.7'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
