@@ -1,2 +1,6 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= form_tag(multipart: true) do %>
+	<%= label_tag(:language, "Language:") %>
+	<%= select_tag(:language, options_for_select([['English', 1]])) %>
+	<%= file_field_tag 'picture' %>
+	<%= submit_tag("Search") %>
+<% end %>
