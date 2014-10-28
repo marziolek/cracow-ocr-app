@@ -1,10 +1,12 @@
 OCRapp::Application.routes.draw do
-
   root 'home#index'
 
-  resources :home do
-    post 'home/upload'
+  resources :home do 
+      post 'upload', on: :collection
   end
+  resources :asds
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

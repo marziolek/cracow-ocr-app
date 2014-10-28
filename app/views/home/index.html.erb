@@ -1,4 +1,4 @@
-<%= form_tag(multipart: true) do %>
+<%= form_tag(controller: 'home', action: 'upload') do %>
 	<%= label_tag(:language, "Language:") %>
 	<%= select_tag(:language, options_for_select([['English', 1]])) %>
 	<%= file_field_tag 'picture' %>
