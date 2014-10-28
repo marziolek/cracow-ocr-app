@@ -1,7 +1,9 @@
 OCRapp::Application.routes.draw do
-  get "home/index"
-  resources :cores do
-    get 'cores/index'
+
+  root 'home#index'
+
+  resources :home do
+    post 'home/upload'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
