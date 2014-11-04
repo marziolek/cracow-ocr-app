@@ -11,14 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028185003) do
+ActiveRecord::Schema.define(version: 20141104135919) do
 
-  create_table "asds", force: true do |t|
+  create_table "documents", force: true do |t|
+    t.string   "language"
+    t.string   "doc_type"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "cores", force: true do |t|
+  create_table "english_registration_certificates", force: true do |t|
+    t.string   "number"
+    t.integer  "document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

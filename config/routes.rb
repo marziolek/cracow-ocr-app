@@ -1,10 +1,14 @@
 OCRapp::Application.routes.draw do
-  root 'home#index'
+  resources :documents
 
-  resources :home do 
+  resources :english_registration_certificates
+
+  root 'documents#new'
+
+  resources :homes do
       post 'upload', on: :collection
   end
-  resources :asds
+
 
 
 
