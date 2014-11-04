@@ -13,7 +13,7 @@ end
 group :production do
 	gem 'pg'
 	gem 'thin'
-	gem 'cmake-heroku', '~> 2.8.7'
+	#gem 'cmake-heroku', '~> 2.8.7'
 end
 
 # Use SCSS for stylesheets
