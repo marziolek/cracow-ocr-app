@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @home = Home.new
   end
 
   def upload
@@ -7,10 +8,14 @@ class HomeController < ApplicationController
     # Here goes file saving
     #
 
-    DataFile.save_file(params[:picture])
-    @data = params[:picture]
+    #name = params[:upload][:file].original_filename
+    @home = Home.new
+    @home.picture = params[:picture]
+    @home.save!
 
-    @img = @data.read
+
+    # do something to the file, for example:
+    #    file.read(2) #=> "ab"
     #name = params['datafile']
     #directory = "images/upload"
     #path = File.join(directory, name)

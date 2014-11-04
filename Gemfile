@@ -6,10 +6,10 @@ ruby '2.0.0'
 gem 'rails', '4.0.0'
 
 group :development, :test do
-	gem 'sqlite3'	
+	gem 'sqlite3'
 end
 
-# we need postgresql on heroku!!! 
+# we need postgresql on heroku!!!
 group :production do
 	gem 'pg'
 	gem 'thin'
@@ -41,6 +41,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'angularjs-rails', '~> 1.3.0'
 
 gem 'heroku'
+
+gem 'carrierwave'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

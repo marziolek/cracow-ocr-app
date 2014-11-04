@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @document.language %>
+</p>
+
+<p>
+  <strong>Doc type:</strong>
+  <%= @document.doc_type %>
+</p>
+
+<p>
+  <%= image_tag(@document.image) %>
+</p>
+
+<p>
+  <%= @document.created_at %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @document.image %>
+</p>
+
+<p>
+  <strong>Translation</strong>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @translation.number %>
+</p>
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>
