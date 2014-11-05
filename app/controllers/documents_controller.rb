@@ -10,7 +10,10 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
-    @document = Document.find(params[:id])
+    #@document = Document.find(params[:id])
+    #
+    # Above line is unnecesary because there is this magic before_action :set_document ... hell yeah
+    #
     case @document.doc_type
     when 'registration_certificate'
       case @document.language
@@ -41,7 +44,7 @@ class DocumentsController < ApplicationController
       when 'english'
         @translation = EnglishRegistrationCertificate.new()
         @translation.document = @document
-        @translation.number = 'abc123'
+        @translation.number = '123456'
         #here comes preProcessing and OCR things
       end
     else
