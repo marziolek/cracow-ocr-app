@@ -4,4 +4,8 @@ class Document < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  validates :language, presence: true, inclusion: { in: %w(english)}
+  validates :doc_type, presence: true, inclusion: { in: %w(registration_certificate)}
+  validates :image, presence: true
+
 end

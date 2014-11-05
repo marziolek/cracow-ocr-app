@@ -84,4 +84,6 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 		end
 	end
 
+  validates :document, presence: true
+
 end
