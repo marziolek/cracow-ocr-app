@@ -44,6 +44,8 @@ gem 'heroku'
 
 gem 'carrierwave'
 
+gem 'ocrsdk', '~> 0.3.4'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
