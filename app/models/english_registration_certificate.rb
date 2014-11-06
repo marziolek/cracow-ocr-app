@@ -1,6 +1,7 @@
 class EnglishRegistrationCertificate < ActiveRecord::Base
 
 	belongs_to :document, dependent: :destroy
+	validates :document, presence: true
 
 	def ocrProcess(appId,pass,fileName,lang,url)
 		# IMPORTANT!
@@ -12,13 +13,13 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 		# CGI.escape is needed to escape whitespaces, slashes and other symbols
 		# that could invalidate the URI if any
 		# Name of application you created
-	
+
 		# IMPORTANT!
 
 		# Upload and process the image (see http://ocrsdk.com/documentation/apireference/processImage)
 		begin
-			response = RestClient.post("#{url}/processImage?language=#{lang}&exportFormat=txt", :upload => { 
-				:file => File.new(fileName, 'rb') 
+			response = RestClient.post("#{url}/processImage?language=#{lang}&profile=textExtraction&exportFormat=txt", :upload => {
+				:file => File.new(fileName, 'rb')
 				})
 		rescue RestClient::ExceptionWithResponse => e
 		  # Show processImage errors
@@ -29,9 +30,13 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 		  xml_data = REXML::Document.new(response)
 		  task_element = xml_data.elements["response/task"]
 		  task_id = task_element.attributes["id"]
+			puts "--- Task id: ---"
+			puts task_id
 		  # Obtain the task status here so that the loop below is not started
 		  # if your application account has not enough credits
 		  task_status = task_element.attributes["status"]
+			puts "--- Task status: ---"
+			puts task_status
 		end
 
 		# Get task information in a loop until task processing finishes
@@ -58,6 +63,8 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 			    xml_data = REXML::Document.new(response)
 			    task_element = xml_data.elements["response/task"]
 			    task_status = task_element.attributes["status"]
+					puts "--- Task status: ---"
+					puts task_status
 			end
 		end
 
@@ -72,18 +79,19 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 
 		# Download the result
 		recognized_text = RestClient.get(download_url)
-		puts 'nasza kurwa odpowiedz'
+		puts '--- Recognized text ---'
 		puts recognized_text
-
-	# Routine for OCR SDK error output
-		def output_response_error(response)
-		  # Parse response xml (see http://ocrsdk.com/documentation/specifications/status-codes)
-		  xml_data = REXML::Document.new(response)
-		  error_message = xml_data.elements["error/message"]
-		   puts "Error: #{error_message.text}" if error_message
-		end
+		return recognized_text
 	end
 
-  validates :document, presence: true
+	# Routine for OCR SDK error output
+	def output_response_error(response)
+		# Parse response xml (see http://ocrsdk.com/documentation/specifications/status-codes)
+		xml_data = REXML::Document.new(response)
+		error_message = xml_data.elements["error/message"]
+		puts "Error: #{error_message.text}" if error_message
+	end
+
+
 
 end

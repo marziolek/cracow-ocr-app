@@ -19,14 +19,11 @@ class DocumentsController < ApplicationController
       case @document.language
       when 'english'
         @translation = @document.english_registration_certificate
-
-    appid = CGI.escape("Seeker of words in documents")
-    passss = CGI.escape("N2kOz2A8nlqIAwlxHYi8du+K")
-    filename = './images/image.jpg'
-    language = "English"
-    url = "http://#{appid}:#{passss}@cloud.ocrsdk.com"
-
-
+        appid = CGI.escape("Seeker of words in documents")
+        passss = CGI.escape("IGP0S5KYsUi7WpYCiTa8refF")
+        filename = @document.image.current_path
+        language = "English"
+        url = "http://#{appid}:#{passss}@cloud.ocrsdk.com"
         @ocrResult = @translation.ocrProcess(appid,passss,filename,language,url)
       end
     else
