@@ -5,7 +5,6 @@
     <tr>
       <th>Language</th>
       <th>Doc type</th>
-      <th>Image</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,7 +16,6 @@
       <tr>
         <td><%= document.language %></td>
         <td><%= document.doc_type %></td>
-        <td><%= document.image %></td>
         <td><%= link_to 'Show', document %></td>
         <td><%= link_to 'Edit', edit_document_path(document) %></td>
         <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>

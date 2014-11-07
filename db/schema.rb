@@ -11,12 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104135919) do
+ActiveRecord::Schema.define(version: 20141107132654) do
+
+  create_table "document_images", force: true do |t|
+    t.integer  "document_id"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "documents", force: true do |t|
     t.string   "language"
     t.string   "doc_type"
-    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

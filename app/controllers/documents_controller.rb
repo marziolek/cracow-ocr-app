@@ -14,17 +14,21 @@ class DocumentsController < ApplicationController
     #
     # Above line is unnecesary because there is this magic before_action :set_document ... hell yeah
     #
+    @documentImages = @document.document_images.load
     case @document.doc_type
     when 'registration_certificate'
       case @document.language
-      when 'english'
+      when 'English'
         @translation = @document.english_registration_certificate
         appid = CGI.escape("Seeker of words in documents")
         passss = CGI.escape("IGP0S5KYsUi7WpYCiTa8refF")
-        filename = @document.image.current_path
+        #
+        # Here comes the EACH loop over all the images stored in @documentImages objects - probablu mulpile request :: submitImage
+        #
+        #filename = @document.image.current_path
         language = "English"
         url = "http://#{appid}:#{passss}@cloud.ocrsdk.com"
-        @ocrResult = @translation.ocrProcess(appid,passss,filename,language,url)
+        #@ocrResult = @translation.ocrProcess(appid,passss,filename,language,url)
       end
     else
       @translation = EnglishRegistrationCertificate.new()
@@ -34,6 +38,7 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
+    @documentImages = @document.document_images.build
   end
 
   # GET /documents/1/edit
@@ -47,7 +52,7 @@ class DocumentsController < ApplicationController
     case @document.doc_type
     when 'registration_certificate'
       case @document.language
-      when 'english'
+      when "English"
         @translation = EnglishRegistrationCertificate.new()
         @translation.document = @document
         @translation.number = '123456'
@@ -59,6 +64,9 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        params[:document_images]['image'].each do |i|
+          @document_image = @document.document_images.create!(:image => i)
+        end
         if @translation.save
           format.html { redirect_to @document, notice: 'Document was successfully created.' }
           format.json { render action: 'show', status: :created, location: @document }
@@ -66,7 +74,7 @@ class DocumentsController < ApplicationController
           @document.destroy
           format.html { render action: 'new' }
           format.json { render json: @document.errors, status: :unprocessable_entity }
-        end
+         end
       else
         format.html { render action: 'new' }
         format.json { render json: @document.errors, status: :unprocessable_entity }
@@ -108,4 +116,5 @@ class DocumentsController < ApplicationController
     def document_params
       params.require(:document).permit(:language, :doc_type, :image)
     end
+
 end

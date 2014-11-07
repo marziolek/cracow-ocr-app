@@ -11,29 +11,21 @@
 </p>
 
 <p>
-  <%= image_tag(@document.image) %>
-</p>
-
-<p>
   <%= @document.created_at %>
 </p>
 
 <p>
   <strong>Image:</strong>
-  <%= @document.image %>
+  <% @documentImages.each do |i| %>
+    <%= image_tag(i.image) %>
+  <% end %>
 </p>
 
 <p>
   <strong>Translation</strong>
 </p>
-
 <p>
-  <strong>Number:</strong>
   <%= @translation.number %>
-</p>
-
-<p class="result">
-  <%= @ocrResult %>
 </p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |
