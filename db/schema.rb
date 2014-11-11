@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107132654) do
+ActiveRecord::Schema.define(version: 20141111185910) do
 
   create_table "document_images", force: true do |t|
     t.integer  "document_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141107132654) do
     t.string   "doc_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "translation"
   end
 
   create_table "english_registration_certificates", force: true do |t|

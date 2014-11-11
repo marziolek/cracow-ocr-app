@@ -2,9 +2,8 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 
 	belongs_to :document, dependent: :destroy
 	validates :document, presence: true
-	
 
-	def ocrProcess(appId = "cracow-ocr-app", pass = CGI.escape("L4JE7wDmHk3oCH/BNCGI2jIa"), fileName = "./images/image.jpg",lang = "English")
+	def ocrProcess(imageUrl, lang = "English")
 		# IMPORTANT!
 		# To create an application and obtain a password,
 		# register at http://cloud.ocrsdk.com/Account/Register
@@ -16,12 +15,12 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 		# Name of application you created
 
 		# IMPORTANT!
-		baseUrl = "http://#{appId}:#{pass}@cloud.ocrsdk.com"
+		baseUrl = "http://cracow-ocr-app:#{CGI.escape("L4JE7wDmHk3oCH/BNCGI2jIa")}@cloud.ocrsdk.com"
 
 		# Upload and process the image (see http://ocrsdk.com/documentation/apireference/processImage)
 		begin
 			response = RestClient.post("#{baseUrl}/processImage?language=#{lang}&profile=textExtraction&exportFormat=txt", :upload => {
-				:file => File.new(fileName, 'rb')
+				:file => File.new(imageUrl, 'rb')
 				})
 		rescue RestClient::ExceptionWithResponse => e
 		  # Show processImage errors
