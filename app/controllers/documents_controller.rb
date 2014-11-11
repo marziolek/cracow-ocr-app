@@ -20,14 +20,11 @@ class DocumentsController < ApplicationController
       case @document.language
       when 'English'
         @translation = @document.english_registration_certificate
-        appid = CGI.escape("Seeker of words in documents")
-        passss = CGI.escape("IGP0S5KYsUi7WpYCiTa8refF")
         #
         # Here comes the EACH loop over all the images stored in @documentImages objects - probablu mulpile request :: submitImage
         #
         #filename = @document.image.current_path
         language = "English"
-        url = "http://#{appid}:#{passss}@cloud.ocrsdk.com"
         #@ocrResult = @translation.ocrProcess(appid,passss,filename,language,url)
       end
     else
@@ -55,7 +52,9 @@ class DocumentsController < ApplicationController
       when "English"
         @translation = EnglishRegistrationCertificate.new()
         @translation.document = @document
-        @translation.number = '123456'
+        @translation.number = @translation.ocrProcess();
+        @translation.number.force_encoding('ISO-8859-1')
+        
         #here comes preProcessing and OCR things
       end
     else
