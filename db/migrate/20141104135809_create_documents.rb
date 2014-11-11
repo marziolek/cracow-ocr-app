@@ -4,6 +4,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.string :language
       t.string :doc_type
       t.string :image_path
+      t.text :translation
 
       t.timestamps
     end
