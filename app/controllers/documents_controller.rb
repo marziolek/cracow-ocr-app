@@ -55,6 +55,7 @@ class DocumentsController < ApplicationController
       when "English"
         @translation = EnglishRegistrationCertificate.new()
         @translation.document = @document
+
         #here comes preProcessing and OCR things
       end
     else
@@ -66,11 +67,14 @@ class DocumentsController < ApplicationController
         params[:document_images]['image'].each do |i|
           @document_image = @document.document_images.create!(:image => i)
           @imageUrl = @document_image.image.current_path
-          
+
           @document.translation = @translation.ocrProcess(@imageUrl, "English")
           @document.translation.force_encoding('ISO-8859-1')
+
+          @document.save
         end
         if @translation.save
+
           format.html { redirect_to @document, notice: 'Document was successfully created.' }
           format.json { render action: 'show', status: :created, location: @document }
         else
@@ -107,6 +111,10 @@ class DocumentsController < ApplicationController
       format.html { redirect_to documents_url }
       format.json { head :no_content }
     end
+  end
+
+  def save_translation(img_path)
+    
   end
 
   private
