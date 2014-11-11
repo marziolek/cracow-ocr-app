@@ -41,6 +41,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'angularjs-rails', '~> 1.3.0'
 
 gem 'heroku'
+gem 'iconv', '~> 1.0.3' #for heroku lol
 
 gem 'carrierwave'
 
