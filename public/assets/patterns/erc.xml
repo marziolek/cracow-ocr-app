@@ -1,0 +1,12 @@
+<document xmlns="http://ocrsdk.com/schema/taskDescription-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ocrsdk.com/schema/taskDescription-1.0.xsd http://ocrsdk.com/schema/taskDescription-1.0.xsd">
+
+  <fieldTemplates></fieldTemplates>
+
+  <page applyTo="0">
+
+         <text id="textBlock" left="380" top="30" right="590" bottom="80">
+               <language>English</language>
+               <oneTextLine>true</oneTextLine>
+         </text>
+  </page>
+</document>
