@@ -28,7 +28,7 @@ class Ocr
   #
   # Main method
   #
-  def self.processDocument(doc_type, language, images)
+  def self.processDocument(doc_type, language, images, field)
 
     baseUrl = Ocr.baseUrl
     ercXml = Ocr.ercXml
@@ -36,6 +36,9 @@ class Ocr
     task_status = nil
     task_id = nil
 
+
+    puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+    puts field
     #
     # Image Upload => new task establishing
     #

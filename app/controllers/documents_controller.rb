@@ -69,9 +69,21 @@ class DocumentsController < ApplicationController
           @imageUrl = @document_image.image.current_path
           @imageDimensions = FastImage.size(@imageUrl) #=> [x,y]
 
+          #left 80%
+          #top 0
+          #right 100%
+          #bottom 12%
+          #this should return => V5C BR8146864 7/10
+
+          @left = @imageDimensions[0].to_i * 0.8
+          @top = @imageDimensions[1].to_i * 0
+          @right = @imageDimensions[0].to_i * 1
+          @bottom = @imageDimensions[1].to_i * 0.12
           
+          @field = [@left, @top, @right, @bottom]
+
           #working stuff
-          translation = Ocr.processDocument(@document.doc_type, @document.language, @document.document_images.load)
+          translation = Ocr.processDocument(@document.doc_type, @document.language, @document.document_images.load, @field)
           @xmlTranslation = Nokogiri::XML(translation)
 
           puts "****************************************"
