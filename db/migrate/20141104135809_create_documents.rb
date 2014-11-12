@@ -3,6 +3,8 @@ class CreateDocuments < ActiveRecord::Migration
     create_table :documents do |t|
       t.string :language
       t.string :doc_type
+      t.string :image_path
+      t.text :translation
 
       t.timestamps
     end

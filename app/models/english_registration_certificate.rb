@@ -3,7 +3,7 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 	belongs_to :document, dependent: :destroy
 	validates :document, presence: true
 
-	def ocrProcess(appId,pass,fileName,lang,url)
+	def ocrProcess(imageUrl, lang = "English")
 		# IMPORTANT!
 		# To create an application and obtain a password,
 		# register at http://cloud.ocrsdk.com/Account/Register
@@ -15,11 +15,12 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 		# Name of application you created
 
 		# IMPORTANT!
+		baseUrl = "http://cracow-ocr-app:#{CGI.escape("L4JE7wDmHk3oCH/BNCGI2jIa")}@cloud.ocrsdk.com"
 
 		# Upload and process the image (see http://ocrsdk.com/documentation/apireference/processImage)
 		begin
-			response = RestClient.post("#{url}/processImage?language=#{lang}&profile=textExtraction&exportFormat=txt", :upload => {
-				:file => File.new(fileName, 'rb')
+			response = RestClient.post("#{baseUrl}/processImage?language=#{lang}&profile=textExtraction&exportFormat=txt", :upload => {
+				:file => File.new(imageUrl, 'rb')
 				})
 		rescue RestClient::ExceptionWithResponse => e
 		  # Show processImage errors
@@ -53,7 +54,7 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 			    sleep(5)
 
 			    # Call the getTaskStatus function (see http://ocrsdk.com/documentation/apireference/getTaskStatus)
-			    response = RestClient.get("#{url}/getTaskStatus?taskid=#{task_id}")
+			    response = RestClient.get("#{baseUrl}/getTaskStatus?taskid=#{task_id}")
 			rescue RestClient::ExceptionWithResponse => e
 			    # Show getTaskStatus errors
 			    output_response_error(e.response)
@@ -91,7 +92,4 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 		error_message = xml_data.elements["error/message"]
 		puts "Error: #{error_message.text}" if error_message
 	end
-
-
-
 end

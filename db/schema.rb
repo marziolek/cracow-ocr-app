@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20141107132654) do
   create_table "documents", force: true do |t|
     t.string   "language"
     t.string   "doc_type"
+    t.string   "image_path"
+    t.text     "translation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
