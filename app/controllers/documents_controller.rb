@@ -67,13 +67,18 @@ class DocumentsController < ApplicationController
         params[:document_images]['image'].each do |i|
           @document_image = @document.document_images.create!(:image => i)
           @imageUrl = @document_image.image.current_path
+          @imageDimensions = FastImage.size(@imageUrl) #=> [x,y]
 
-          #
-          # Small Marians thing
-          #
-          #@document.translation = @translation.ocrProcess(@imageUrl, "English")
-          #@document.translation.force_encoding('ISO-8859-1')
+          
+          #working stuff
+          translation = Ocr.processDocument(@document.doc_type, @document.language, @document.document_images.load)
+          @xmlTranslation = Nokogiri::XML(translation)
 
+          puts "****************************************"
+          puts @xmlTranslation.css("value").text
+          puts "****************************************"
+
+          @document.translation = @xmlTranslation.css("value").text
           @document.save
         end
 
@@ -81,7 +86,7 @@ class DocumentsController < ApplicationController
         # Big Marinas thing
         #
 
-        puts Ocr.processDocument(@document.doc_type, @document.language, @document.document_images.load)
+        #puts Ocr.processDocument(@document.doc_type, @document.language, @document.document_images.load)
 
         #
         # End of Big Marinas thing

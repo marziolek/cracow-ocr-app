@@ -4,7 +4,7 @@
 
   <page applyTo="0">
 
-         <text id="textBlock" left="380" top="30" right="590" bottom="80">
+         <text id="textBlock" left="715" top="30" right="800" bottom="135">
                <language>English</language>
                <oneTextLine>true</oneTextLine>
          </text>
