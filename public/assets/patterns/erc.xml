@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://ocrsdk.com/schema/taskDescription-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ocrsdk.com/schema/taskDescription-1.0.xsd http://ocrsdk.com/schema/taskDescription-1.0.xsd">
 
-<fieldTemplates>
-    <text id="basicTemplate" left="-1" top="-1" right="-1" bottom="-1">
-                <language>English</language>
-                <textType>normal</textType>
-                <oneTextLine>false</oneTextLine>
-    </text>
-</fieldTemplates>
-<page applyTo="0">
-        <!-- registration number -->
-        <text template="basicTemplate" id="ocr1" left="1020" top="87" right="1453" bottom="175">
-             <oneTextLine>true</oneTextLine>
-        </text>
-</page>
+  <fieldTemplates>
+      <text id="basicTemplate" left="-1" top="-1" right="-1" bottom="-1">
+                  <language>English</language>
+                  <textType>normal</textType>
+                  <oneTextLine>false</oneTextLine>
+      </text>
+  </fieldTemplates>
+  <page applyTo="0">
+          <!-- registration number -->
+          <text template="basicTemplate" id="registrationNumber" left="420" top="34" right="550" bottom="68">
+               <oneTextLine>true</oneTextLine>
+          </text>
+         <!-- circle -->
+          <text template="basicTemplate" id="circle" left="800" top="34" right="920" bottom="132">
+          </text>
+          <!-- registered keeper -->
+          <text template="basicTemplate" id="registeredKeeper" left="120" top="770" right="430" bottom="853">
+          </text>
+          <!-- document reference numer -->
+          <text template="basicTemplate" id="referenceNumber" left="770" top="743" right="940" bottom="866">
+          </text>
+          <!-- previous registere keeper -->
+          <text template="basicTemplate" id="previousKeeper" left="30" top="1004" right="920" bottom="1114">
+          </text>
+          <!-- special notes -->
+          <text template="basicTemplate" id="specialNotes" left="30" top="1155" right="930" bottom="1348">
+          </text>
+  </page>
 </document>
