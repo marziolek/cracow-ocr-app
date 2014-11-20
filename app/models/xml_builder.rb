@@ -5,7 +5,12 @@ class XmlBuilder
   #
   # Hash of pairs (filed_name = hash of four - containing four variable :: left, top, right, bottom) .
   #
-  @@ercFields = {ocr1: {left: 0.4, top: 0.025, right: 0.57, bottom: 0.05}}
+  @@ercFields = {registrationNumber: {left: 0.42, top: 0.025, right: 0.55, bottom: 0.05},
+                circle: {left: 0.8, top: 0.025, right: 0.92, bottom: 0.096},
+                registeredKeeper: {left: 0.12, top: 0.56, right: 0.43, bottom: 0.62},
+                referenceNumber: {left: 0.77, top: 0.54, right: 0.94, bottom: 0.63},
+                previousRegisteredKeeper: {left: 0.03, top: 0.73, right: 0.92, bottom: 0.81},
+                specialNotes: {left: 0.03, top: 0.84, right: 0.93, bottom: 0.98}}
 
   def self.ercPattern
     @@ercPattern
