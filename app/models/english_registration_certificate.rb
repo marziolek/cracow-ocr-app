@@ -175,21 +175,7 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 	end
 
 	def parsePreviousKeeper(field)
-		lineIndicator = 1
-		field.css("line").each do |l|
-			line = ""
-			l.css("char").each do |c|
-				line = line + c.text
-			end
-			if(lineIndicator == 1)
-				self.previousRegisteredKeeper = line
-			else
-				splitedLine = line.split(/(\[|\()+[a-zA-Z]+\.+\d+(\]|\))/)
-				self.dateOfPurchase = splitedLine[0]
-				self.numberOfPreviousOwners = splitedLine[1]
-			end
-			lineIndicator = 2
-		end
+		self.previousRegisteredKeeper = field.css("value").text
 	end
 
 
