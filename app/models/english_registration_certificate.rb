@@ -105,8 +105,95 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 			case t.attributes["id"].value
 			when "registrationNumber"
 				self.registrationNumber = t.css("value").text
+			when "circle"
+				#self.circle = t.css("value").text
+				self.parseCircleField(t)
+			when "registeredKeeper"
+				#self.registeredKeeper = t.css("value").text
+				self.parseRegisteredKeeper(t)
+			when "referenceNumber"
+				#self.referenceNumber = t.css("value").text
+				self.referenceNumber = parseReferenceNumber(t)
+			when "previousKeeper"
+				#self.previousRegisteredKeeper = t.css("value").text
+				self.previousRegisteredKeeper = parsePreviousKeeper(t)
+			when "specialNotes"
+				self.specialNotes = t.css("value").text
 			end
 		end
 	end
+
+	#
+	# NEEEEEED UPDATE !!!!!!!!!!!!!!!!!!!!!!!!!!!
+	#
+	def parseCircleField(field)
+		circleValue = ""
+		field.css("line").each do |l|
+			line = ""
+			l.css("char").each do |c|
+				if(/\w/.match(c.text) || (/\//.match(c.text) && line != ""))
+					line = line + c.text
+				end
+			end
+			#
+			line.gsub(/[\/\\]/, "")
+			#
+			circleValue = circleValue + line + " \n "
+		end
+		self.circle = circleValue
+	end
+
+	def parseRegisteredKeeper(field)
+		keeper = ""
+		field.css("line").each do |l|
+			line = ""
+			l.css("char").each do |c|
+				if(/\w/.match(c.text) || /\s/.match(c.text))
+					line = line + c.text
+				end
+			end
+			#
+			line.gsub(/[\/\\]/, "")
+			#
+			keeper = keeper + line + " \n "
+		end
+		self.registeredKeeper = keeper
+	end
+
+	def parseReferenceNumber(field)
+		refNumber = ""
+		field.css("line").each do |l|
+			line = ""
+			l.css("char").each do |c|
+				if(/\w/.match(c.text) || /\s/.match(c.text))
+					line = line + c.text
+				end
+			end
+			refNumber = refNumber + line + " \n "
+		end
+		self.referenceNumber = refNumber
+	end
+
+	def parsePreviousKeeper(field)
+		lineIndicator = 1
+		field.css("line").each do |l|
+			line = ""
+			l.css("char").each do |c|
+				line = line + c.text
+			end
+			if(lineIndicator == 1)
+				self.previousRegisteredKeeper = line
+			else
+				splitedLine = line.split(/(\[|\()+[a-zA-Z]+\.+\d+(\]|\))/)
+				self.dateOfPurchase = splitedLine[0]
+				self.numberOfPreviousOwners = splitedLine[1]
+			end
+			lineIndicator = 2
+		end
+	end
+
+
+
+
 
 end

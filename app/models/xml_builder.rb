@@ -9,7 +9,7 @@ class XmlBuilder
                 circle: {left: 0.8, top: 0.025, right: 0.92, bottom: 0.096},
                 registeredKeeper: {left: 0.12, top: 0.56, right: 0.43, bottom: 0.62},
                 referenceNumber: {left: 0.77, top: 0.54, right: 0.94, bottom: 0.63},
-                previousRegisteredKeeper: {left: 0.03, top: 0.73, right: 0.92, bottom: 0.81},
+                previousKeeper: {left: 0.03, top: 0.73, right: 0.92, bottom: 0.81}, # => Can't be 'previousRegisteredKeeper' because it is TOO LONG for OCR.SDK
                 specialNotes: {left: 0.03, top: 0.84, right: 0.93, bottom: 0.98}}
 
   def self.ercPattern
