@@ -10,7 +10,7 @@
 </fieldTemplates>
 <page applyTo="0">
         <!-- registration number -->
-        <text template="basicTemplate" id="ocr1" left="1020" top="87" right="1453" bottom="175">
+        <text template="basicTemplate" id="ocr1" left="1075" top="90" right="1400" bottom="165">
              <oneTextLine>true</oneTextLine>
         </text>
 </page>

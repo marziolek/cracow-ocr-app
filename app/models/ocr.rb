@@ -28,7 +28,7 @@ class Ocr
   #
   # Main method
   #
-  def self.processDocument(doc_type, language, images, field)
+  def self.processDocument(doc_type, language, images)
 
     baseUrl = Ocr.baseUrl
     ercXml = Ocr.ercXml
@@ -36,9 +36,18 @@ class Ocr
     task_status = nil
     task_id = nil
 
+    #
+    # Prepare xml for current DOC
+    #
+    xmlPattern = XmlBuilder.prepareXmlPattern(doc_type, images)
+    #
 
-    puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-    puts field
+
+    #
+    # Open prepared file
+    #
+    xmlFile = File.open("public/assets/patterns/erc.xml", "rb")
+
     #
     # Image Upload => new task establishing
     #
@@ -86,8 +95,11 @@ class Ocr
     #if(task_status == "InProgress" or task_status == "Queued" or task_status == "Submitted")
     if(task_status == "Submitted")
       begin
+        #response = RestClient.post("#{baseUrl}/processFields?taskId=#{task_id}", :upload => {
+        #  :file => File.new(ercXml, 'rb')
+        #  })
         response = RestClient.post("#{baseUrl}/processFields?taskId=#{task_id}", :upload => {
-          :file => File.new(ercXml, 'rb')
+          :file => xmlFile
           })
       rescue RestClient::ExceptionWithResponse => e
         # Show processImage errors
