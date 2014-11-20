@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
     when 'registration_certificate'
       case @document.language
       when 'English'
-        #@translation = @document.english_registration_certificate
+        @translation = @document.english_registration_certificate
         #appid = CGI.escape("Seeker of words in documents")
         #passss = CGI.escape("IGP0S5KYsUi7WpYCiTa8refF")
         #
@@ -77,6 +77,18 @@ class DocumentsController < ApplicationController
           # Here comes the XML parser
           #
 
+          @translation.registrationNumber = '1234567'
+          @translation.circle = 'ABC 123 kółko'
+          @translation.registeredKeeper = "Andrzej Strzelba"
+          @translation.referenceNumber = "1234 5678 90"
+          @translation.previousRegisteredKeeper = "Bartek Walaszek, BFF"
+          @translation.dateOfPurchase = "20.11.2014"
+          @translation.numberOfPreviousOwners = "3"
+          @translation.specialNotes = "Niemiec płakał jak sprzedawał. Niemiec odwoził do granicy!"
+
+          #
+          # BTW. translation variable 4 document is sensless - we have to remove it as soon as possible :: when parsed response will be saved in database (EnglishRegistrationCetificate)
+          #
           @document.translation = @xmlTranslation.css("value").text
 
           #

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107132654) do
+ActiveRecord::Schema.define(version: 20141120121454) do
 
   create_table "document_images", force: true do |t|
     t.integer  "document_id"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20141107132654) do
     t.integer  "document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "registrationNumber"
+    t.string   "circle"
+    t.string   "registeredKeeper"
+    t.string   "referenceNumber"
+    t.string   "previousRegisteredKeeper"
+    t.string   "dateOfPurchase"
+    t.string   "numberOfPreviousOwners"
+    t.string   "specialNotes"
   end
 
   create_table "homes", force: true do |t|
