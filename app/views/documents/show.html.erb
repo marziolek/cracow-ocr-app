@@ -20,7 +20,7 @@
     <%= image_tag(i.image) %>
   <% end %>
 </p>
-
+<!--
 <p>
   <strong>Response</strong>
 </p>
@@ -63,7 +63,7 @@
   <strong>specialNotes:</strong>
   <%= @translation.specialNotes %>
 </p>
-
+-->
 <div class="content">
 	<div class="table">
 		<div class="third">
@@ -71,16 +71,16 @@
 		</div>
 		<div class="third">
 			<p class="center">Numer rejestracyjny</p>
-			<p class="smallLine center"><span class="strong">NX06 UGU</span></p>
+			<p class="smallLine center"><span class="strong fromResult"><%= @translation.registrationNumber %></span></p>
 		</div>
 		<div class="third">
 			<p class="smallLine center"><span class="italic">(napis w białym kole)</span></p>
-			<p class="smallLine center"><span class="strong">V5C</span></p>
-			<p class="smallLine center"><span class="strong">BT 4751096</span></p>
-			<p class="smallLine center"><span class="strong">7/10</span></p>
+			<p class="smallLine center"><span class="strong fromResult"><%= @translation.circle %></span></p>
 		</div>
 	</div>
-	
+	<br>
+	<br>
+	<br>
 	<div class="header border center strong">
 		<p>Zjednoczone Królestwo Wielkiej Brytanii</p>
 		<p>UK</p>
@@ -95,11 +95,10 @@
 		<div class="border">
 		<p>1.  <span class="strong">Zarejestrowany właściciel. -/-</span></p>
 		<p class="right strong smallLine">Numer identyfikacyjny dokumentu</p>
-		<p class="right strong smallLine">1257 844 9911</p>
+		<p class="right strong smallLine fromResult"><%= @translation.referenceNumber %></p>
 		<div class="strong">
-			<p class="smallLine">MAREK KOZAK</p>
-			<p class="smallLine">36 CROWMELL ROAD WEMBLEY</p>
-			<p class="smallLine">HA0 1JS 77000</p>
+			<p class="smallLine fromResult"><%= @translation.registeredKeeper%></p>
+			
 		</div>
 		<p class="strong">Zarejestrowany właściciel jest odpowiedzialny za pojazd do czasu aż DVLA zostanie powiadomione o jego sprzedaży/przekazaniu. -/-</p>
 		<p>DVLA może ujawniać dane właściciela pojazdu dla rozmaitych prawnych zastosowań prawnych. (Patrz Uwagi Informacyjne INS160). -/-</p>
@@ -112,7 +111,7 @@
 		</div>
 		<div class="border">
 			<p class="strong">Uwagi specjalne.</p>
-			<p>1. ZADEKLAROWANY JAKO NOWY PRZY PIERWSZEJ REJESTRACJI.</span></p>
+			<p class="fromResult">(<%= @translation.specialNotes%>)</p>
 		</div>
 		
 
