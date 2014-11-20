@@ -1,0 +1,10 @@
+	.content {font-family: "Times New Roman", serif; font-size: 12pt;}
+	.center {text-align: center}
+	.right {text-align: right}
+	.smallLine {margin: 0px; padding: 0px}
+	.italic {font-style: italic}
+	.strong {font-weight: bold}
+	.table { width:900px }
+	.third { float: left; width: 33% }
+	.header {width: 900px; margin: 20px}
+	.border {border-bottom: 1px solid;}

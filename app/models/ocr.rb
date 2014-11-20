@@ -7,9 +7,9 @@ class Ocr
   # Because Big Marian has no access to above app
   #
 
-  @@baseUrl = "http://#{CGI.escape("Seeker of words in documents")}:#{CGI.escape("IGP0S5KYsUi7WpYCiTa8refF")}@cloud.ocrsdk.com"
-  @@password = "IGP0S5KYsUi7WpYCiTa8refF"
-  @@appname = "Seeker of words in documents"
+  @@baseUrl = "http://#{CGI.escape("AndrzejTest")}:#{CGI.escape("Jj5WXVcgPb+pDzcYmwBZPf8M")}@cloud.ocrsdk.com"
+  @@password = "Jj5WXVcgPb+pDzcYmwBZPf8M"
+  @@appname = "AndrzejTest"
 
   @@ercXml = "public/assets/patterns/erc.xml"
 
