@@ -70,13 +70,12 @@ class DocumentsController < ApplicationController
           @imageDimensions = FastImage.size(@imageUrl) #=> [x,y]
 
           #working stuff
-          translation = Ocr.processDocument(@document.doc_type, @document.language, @document.document_images.load)
-          @xmlTranslation = Nokogiri::XML(translation)
+          response = Ocr.processDocument(@document.doc_type, @document.language, @document.document_images.load)
+          @xmlTranslation = Nokogiri::XML(response)
 
           #
-          # Here comes the XML parser
+          # Temporary
           #
-
           @translation.registrationNumber = '1234567'
           @translation.circle = 'ABC 123 kółko'
           @translation.registeredKeeper = "Andrzej Strzelba"
@@ -85,6 +84,11 @@ class DocumentsController < ApplicationController
           @translation.dateOfPurchase = "20.11.2014"
           @translation.numberOfPreviousOwners = "3"
           @translation.specialNotes = "Niemiec płakał jak sprzedawał. Niemiec odwoził do granicy!"
+
+          #
+          # Here comes the XML parser
+          #
+          @translation.parseResponse(response)
 
           #
           # BTW. translation variable 4 document is sensless - we have to remove it as soon as possible :: when parsed response will be saved in database (EnglishRegistrationCetificate)

@@ -92,4 +92,21 @@ class EnglishRegistrationCertificate < ActiveRecord::Base
 		error_message = xml_data.elements["error/message"]
 		puts "Error: #{error_message.text}" if error_message
 	end
+
+
+	#
+	# Parse given responce (xml)
+	#
+	# UPDATE :: check how looks response with multiple pages
+	#
+	def parseResponse(response)
+		xml = Nokogiri::XML(response)
+		xml.css("text").each do |t|
+			case t.attributes["id"].value
+			when "registrationNumber"
+				self.registrationNumber = t.css("value").text
+			end
+		end
+	end
+
 end
