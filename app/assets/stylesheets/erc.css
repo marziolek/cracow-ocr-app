@@ -4,8 +4,17 @@
 	.smallLine {margin: 0px; padding: 0px}
 	.italic {font-style: italic}
 	.strong {font-weight: bold}
-	.table { width:900px }
 	.third { float: left; width: 33% }
-	.header {width: 900px; margin: 20px}
+	.header {margin: 20px}
 	.border {border-bottom: 1px solid;}
 	.fromResult {color: blue}
+
+.content.floatImage,
+.imageOcr {
+	display: inline-block;
+	width: 50%;
+	float: left;
+}
+.imageOcr img {
+	max-width: 100%;
+}

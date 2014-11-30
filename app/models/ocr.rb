@@ -12,6 +12,7 @@ class Ocr
   @@appname = "AndrzejTest"
 
   @@ercXml = "public/assets/patterns/erc.xml"
+  #@@ercXml = "fields.xml"
 
   def self.baseUrl
     @@baseUrl
@@ -135,6 +136,8 @@ class Ocr
         puts task_status
       end
     end
+
+    puts "task_status"
 
     # Check if there were errors ..
     raise "The task hasn't been processed because an error occurred" if task_status == "ProcessingFailed"
